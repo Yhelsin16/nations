@@ -1,0 +1,29 @@
+EJERCICIO 4
+UNA TABLA Seleccione los países que comienzen con ‘R’ , ‘S’ , o ‘T’ , que se
+independizaron o establecieron después del fin de la Segunda Guerra
+Mundial
+Country::select('name', 'national_day')->
+... orwhere('name', 'like', 'R%')->
+... orwhere('name', 'like', 'S%')->
+... orwhere('name', 'like', 'T%')->
+... where('national_day', ['1945-09-2'])->
+... get()
+
+
+UNO A
+MUCHOS
+Seleccione, en promedio, cuanto tienen de area los paises de la region
+“Polynesia”
+>>> Region::find(7)->paises()->avg('area')
+
+
+MUCHOS A
+MUCHOS
+Seleccione los Idiomas no oficiales de United States que terminan con la
+partícula ‘ese’
+>>> Country::find(224)->
+... idiomas()->
+... select('official', 'language')->
+... where('official', '=', '0')->
+... where('language', 'like', '%ese')->
+... get()
